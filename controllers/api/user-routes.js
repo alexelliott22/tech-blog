@@ -1,6 +1,4 @@
 const router = require('express').Router();
-const { RequestTimeout } = require('http-errors');
-const { resourceLimits } = require('worker_threads');
 const {User, Post, Comment} = require('../../models');
 
 //get all users

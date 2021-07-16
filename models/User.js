@@ -44,12 +44,20 @@ User.init(
         //table column configurations
         hooks: {
             async beforeCreate(newUserData) {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10);
-                return newUserData;
+                try {
+                    newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                    return newUserData; 
+                } catch (error) {
+                    console.log(error);
+                }
             },
             async beforeUpdate(updatedUserData) {
-                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-                return updatedUserData;
+                try {
+                    updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                    return updatedUserData;         
+                } catch (error) {
+                    console.log(error);
+                }
             }
         },
         // pass in our imported sequelize connection (the direct connection to our database)
