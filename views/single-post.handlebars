@@ -1,4 +1,14 @@
-{{> post-info}}
+<article class="post">
+    <div class="title">
+        <h2>{{post.title}}</h2>
+    </div>
+    <div class="content">
+        <h3>{{post.content}}</h3>
+    </div>
+    <div class="meta">
+        <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a>
+    </div>
+</article>
 
 {{#if loggedIn}}
 <form class="comment-form">
@@ -8,7 +18,6 @@
 
     <div>
         <button type="submit">add comment</button>
-        <button type="button" class="upvote-btn">upvote</button>
     </div>
 </form>
 {{/if}}

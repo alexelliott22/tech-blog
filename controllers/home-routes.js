@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const {Post, User, Comment} = require('../models');
 
 router.get('/', (req, res) => {
@@ -27,12 +26,12 @@ router.get('/', (req, res) => {
         //pass a single post object into the homepage
         const posts = dbPostData.map(post => post.get({plain: true}))
         res.render('homepage', {
-          posts,
-          loggedIn: req.session.loggedIn
+            posts,
+            loggedIn: req.session.loggedIn
         });
     })
     .catch(err => {
-        console.log(err);
+        console.log('Failed to get posts');
         res.status(500).json(err);
     })
 });
@@ -53,7 +52,7 @@ router.get('/post/:id', (req, res) => {
         },
         attributes: [
           'id',
-          'post_url',
+          'content',
           'title',
           'created_at'
         ],
@@ -88,7 +87,7 @@ router.get('/post/:id', (req, res) => {
         });
     })
     .catch(err => {
-        console.log(err);
+        console.log('failed to get post');
         res.status(500).json(err);
     });
 })

@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
   })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
-      console.log(err);
+      console.log('Failed to get posts');
       res.status(500).json(err);
     });
 });
@@ -66,7 +66,7 @@ router.get('/:id', (req, res) => {
       res.json(dbPostData);
     })
     .catch(err => {
-      console.log(err);
+      console.log('Failed to get post');
       res.status(500).json(err);
     });
 });
@@ -79,7 +79,7 @@ router.post('/', (req, res) => {
   })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
-      console.log(err);
+      console.log('Failed to add post');
       res.status(500).json(err);
     });
 });
@@ -104,13 +104,12 @@ router.put('/:id', (req, res) => {
       res.json(dbPostData);
     })
     .catch(err => {
-      console.log(err);
+      console.log('Failed to edit post');
       res.status(500).json(err);
     });
 });
 
 router.delete('/:id', (req, res) => {
-  console.log('id', req.params.id);
   Post.destroy({
     where: {
       id: req.params.id
@@ -124,7 +123,7 @@ router.delete('/:id', (req, res) => {
       res.json(dbPostData);
     })
     .catch(err => {
-      console.log(err);
+      console.log('failed to delete post');
       res.status(500).json(err);
     });
 });

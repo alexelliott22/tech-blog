@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 
 router.get('/', (req, res) => {
@@ -35,7 +34,7 @@ router.get('/', (req, res) => {
         res.render('dashboard', { posts, loggedIn: true });
     })
     .catch(err => {
-        console.log(err);
+        console.log('failed to get posts');
         res.status(500).json(err);
     });
 });
@@ -82,7 +81,7 @@ router.get('/edit/:id', (req, res) => {
       });
     })
     .catch(err => {
-      console.log(err);
+      console.log('failed to edit posts');
       res.status(500).json(err);
     });
 })

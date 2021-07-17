@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
-        console.log(err)
+        console.log('Failed to get all users')
         res.status(500).json(err);
     });
 });
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Post,
-                attributes: ['id', 'title', 'post_url', 'created_at']
+                attributes: ['id', 'title', 'content', 'created_at']
             },
             {
                 model: Comment,
@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
         res.json(dbUserData)
     })
     .catch(err => {
-        console.log(err)
+        console.log('Failed to get user')
         res.status(500).json(err)
     })
 });
@@ -65,7 +65,7 @@ router.post('/', (req, res) => {
         });
     })
     .catch(err => {
-        console.log(err);
+        console.log('Failed to add user');
         res.status(500).json(err);
     })
 });
@@ -98,7 +98,7 @@ router.post('/login', (req, res) => {
         })
     })
     .catch(err => {
-        console.log(err);
+        console.log('Failed to login');
         res.status(500).json(err);
     });
 });
@@ -132,7 +132,7 @@ router.put('/:id', (req, res) => {
         res.json(dbUserData);
       })
       .catch(err => {
-        console.log(err);
+        console.log('Failed to update user');
         res.status(500).json(err);
       });
 });
@@ -152,7 +152,7 @@ router.delete('/:id', (req, res) => {
         res.json(dbUserData);
       })
       .catch(err => {
-        console.log(err);
+        console.log('Failed to delete user');
         res.status(500).json(err);
       });
 });
