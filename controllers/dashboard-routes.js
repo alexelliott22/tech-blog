@@ -75,7 +75,7 @@ router.get('/edit/:id', (req, res) => {
       const post = dbPostData.get({ plain: true });
 
       // pass data to template
-      res.render('single-post', {
+      res.render('edit-post', {
         post,
         loggedIn: true
       });
